@@ -40,3 +40,28 @@ var now = Date.now()
     console.log('created: ' + JSON.stringify(dog))
 })()
 // 用Promise向数据库添加数据
+Pet.create({
+    id: 'g-' + now,
+    name: 'Gaffey',
+    gender: false,
+    birth: '2007-07-07',
+    createdAt: now,
+    updatedAt: now,
+    version: 0
+}).then(function (p) {
+    console.log('created.' + JSON.stringify(p));
+}).catch(function (err) {
+    console.log('failed: ' + err)
+})
+// findAll方法查询数据库
+(async () => {
+    var pets = await Pet.findAll({
+        where: {
+            name: 'Gaffey'
+        }
+    });
+    console.log(`find ${pets.length} pets:`);
+    for (let p of pets) {
+        console.log(JSON.stringify(p));
+    }
+})()
