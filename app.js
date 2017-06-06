@@ -25,20 +25,7 @@ var Pet = sequelize.define('pet', {
 }, {
 	timestamps: false
 })
-// 向数据库添加数据
 var now = Date.now();
-(async () => {
-    var dog = await Pet.create({
-        id: 'd-' + now,
-        name: 'Odie',
-        gender: false,
-        birth: '2008-08-08',
-        createdAt: now,
-        updatedAt: now,
-        version: 0
-    })
-    console.log('created: ' + JSON.stringify(dog))
-})()
 // 用Promise向数据库添加数据
 Pet.create({
     id: 'g-' + now,
@@ -53,6 +40,19 @@ Pet.create({
 }).catch(function (err) {
     console.log('failed: ' + err)
 });
+// 向数据库添加数据
+(async () => {
+    var dog = await Pet.create({
+        id: 'd-' + now,
+        name: 'Odie',
+        gender: false,
+        birth: '2008-08-08',
+        createdAt: now,
+        updatedAt: now,
+        version: 0
+    })
+    console.log('created: ' + JSON.stringify(dog))
+})();
 // findAll方法查询数据库
 (async () => {
     var pets = await Pet.findAll({
@@ -63,5 +63,14 @@ Pet.create({
     console.log(`find ${pets.length} pets:`);
     for (let p of pets) {
         console.log(JSON.stringify(p));
+        console.log('update pet...');
+        p.gender = true;
+        p.updatedAt = Date.now();
+        p.version ++;
+        await p.save();
+        if (p.version === 4) {
+            await p.destroy();
+            console.log(`${p.name} was destroyed.`);
+        }
     }
 })()
