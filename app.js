@@ -39,3 +39,4 @@ var now = Date.now()
     })
     console.log('created: ' + JSON.stringify(dog))
 })()
+// 用Promise向数据库添加数据
