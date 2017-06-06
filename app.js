@@ -26,7 +26,7 @@ var Pet = sequelize.define('pet', {
 	timestamps: false
 })
 // 向数据库添加数据
-var now = Date.now()
+var now = Date.now();
 (async () => {
     var dog = await Pet.create({
         id: 'd-' + now,
@@ -52,7 +52,7 @@ Pet.create({
     console.log('created.' + JSON.stringify(p));
 }).catch(function (err) {
     console.log('failed: ' + err)
-})
+});
 // findAll方法查询数据库
 (async () => {
     var pets = await Pet.findAll({

@@ -1,5 +1,5 @@
 var config = {
-    database: 'test', // 使用哪个数据库
+    database: 'sys', // 使用哪个数据库
     username: 'www', // 用户名
     password: 'www', // 口令
     host: 'localhost', // 主机名
