@@ -7,3 +7,14 @@ const config = require('./config')
 function genetateId () {
 	return uuid.v4();
 }
+
+//初始化链接数据库参数v
+var sequelize = new Sequelize(config.database, config.username, config.password,{
+	host: config.host,
+	dialect: config.dialect,
+	pool: {
+		max:5,
+		min:0,
+		idle: 10000
+	}
+});
