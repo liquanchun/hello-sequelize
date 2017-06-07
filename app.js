@@ -69,6 +69,7 @@ Pet.create({
         p.version ++;
         await p.save();
         if (p.version === 4) {
+        	console.log('lalalalalala')
             await p.destroy();
             console.log(`${p.name} was destroyed.`);
         }
